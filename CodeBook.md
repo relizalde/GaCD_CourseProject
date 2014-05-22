@@ -8,6 +8,7 @@ This repository include the following files:
 * run_analysis.R - Script for performing the analysis
 
 The R script does the following tasks: 
+
 1. Merges the training and the test sets to create one data set.
 2. Extracts only the measurements on the mean and standard deviation for each measurement. 
 3. Uses descriptive activity names to name the activities in the data set
@@ -52,22 +53,23 @@ The following variables save the data from the corresponding file:
  - fBodyAccJerkMag
  - fBodyGyroMag
  - fBodyGyroJerkMag
-* activity_labels
+* activity_labels: Links the class labels with their activity name
 
-id | Name
-1 | WALKING
-2 | WALKING_UPSTAIRS
-3 | WALKING_DOWNSTAIRS
-4 | SITTING
-5 | STANDING
-6 | LAYING
+|id  | Name
+|--- | :---:
+| 1  | WALKING
+| 2  | WALKING_UPSTAIRS
+| 3  | WALKING_DOWNSTAIRS
+| 4  | SITTING
+| 5  | STANDING
+| 6  | LAYING
 
-* subject_test
-* X_test
-* y_test
-* subject_train
-* X_train
-* y_train
+* subject_test: Each row identifies the subject who performed the activity for each window sample. Its range is from 1 to 30.
+* X_test: data.frame with the test set
+* y_test: data.frame with the test labels
+* subject_train: Each row identifies the subject who performed the activity for each window sample. Its range is from 1 to 30.
+* X_train: data.frame with the training set
+* y_train: data.frame with the training labels
 
 #### Merged Data
 * subjects: data.frame that contains the test and train subjects
@@ -81,9 +83,30 @@ id | Name
 * MeltDataset: the result data.frame of a melting process on the subjects and activities variables
 * AverageDataset: data.frame that contains the average of each variable for each activity and each subject
 
-### TRANSFORMATIONS
-Read raw data from files
-Joins and merges for create one dataset
-Subset the info in order to get just means and std
-Melt info in order to get average for each subject and each activity
-write this table in a file
+### SUMMARY
+#### Processing Steps 
+- Download and unzip the dataset from UCI if is not in the working directory
+- Read raw data from files and save it to data.frame variables
+- Merges the training and the test sets to create one data set. This step include the subjects and activity names.
+- Assign the column names from the features table after cleaning them. The cleaning process consists in the following:
+ + Change '-' for '.'
+ + Change ',' for '_'
+ + Delete '(' and ')'
+- Subset the dataset in order to get just means and standard deviation calculations using `grep` function.
+- Using `melt` and `dcast` functions, a data.frame (`AverageDataset`) that contains the average of each variable for each activity and each subject is created.
+- Write `AverageDataset` in a file.
+
+#### Important Considerations
+*Naming*
+
+Column names were assigned from the features file. Due to the length of the names and number of columns, I have used a combination of '.', '_' and capitals in order to make the names more understandable. This cleanng process was made using `gsub` function.
+
+*Selecting mean and standard deviation measurements*
+
+In order to achieve this we use the `grep` function. We looked for every column that contains 'mean' or 'std in the name but with the exception of the *angle* related measures. 
+
+These *angle* related measures are the only ones that have the mean function with capital letter (Mean) so it was easy to neglect them.
+
+*Installed packages*
+
+For using `melt` and `dcast` functions the `reshape2` package needs to be installed. The script installed it and load it if it's not present.

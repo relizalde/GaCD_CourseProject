@@ -7,7 +7,8 @@ This repository include the following files:
 * CodeBook.md - Describes the variables, the data, and all transformations performed to clean up the data 
 * run_analysis.R - Script for performing the analysis
 
-The R script does the following tasks: 
+The R script does the following tasks:
+
 1. Merges the training and the test sets to create one data set.
 2. Extracts only the measurements on the mean and standard deviation for each measurement. 
 3. Uses descriptive activity names to name the activities in the data set
