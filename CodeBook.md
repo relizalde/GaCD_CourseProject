@@ -33,7 +33,52 @@ There are several files in the dateset but the following are the ones that the s
 
 ### VARIABLES
 #### Raw Data
-#### Columns
+The following variables save the data from the corresponding file:
+* features: A 561-feature vector with time and frequency domain variables. All are estimations on the following signals:
+ - tBodyAcc-XYZ
+ - tGravityAcc-XYZ
+ - tBodyAccJerk-XYZ
+ - tBodyGyro-XYZ
+ - tBodyGyroJerk-XYZ
+ - tBodyAccMag
+ - tGravityAccMag
+ - tBodyAccJerkMag
+ - tBodyGyroMag
+ - tBodyGyroJerkMag
+ - fBodyAcc-XYZ
+ - fBodyAccJerk-XYZ
+ - fBodyGyro-XYZ
+ - fBodyAccMag
+ - fBodyAccJerkMag
+ - fBodyGyroMag
+ - fBodyGyroJerkMag
+* activity_labels
+id|Name
+1|WALKING
+2|WALKING_UPSTAIRS
+3|WALKING_DOWNSTAIRS
+4|SITTING
+5|STANDING
+6|LAYING
+* subject_test
+* X_test
+* y_test
+* subject_train
+* X_train
+* y_train
+
+#### Merged Data
+* subjects: data.frame that contains the test and train subjects
+* lblActivity: data.frame that contains the name of the activity associated to each row 
+* allData: data.frame that contains the test and train data
+* cn: it contains the clean columns names from features data.frame
+* FinalDataset: data.frame that contains the subjects, name of activities and the data for all the features
+
+#### Data Analysis
+* MeanStdDataset: data.frame that contains the subjects, name of activities and the data for the features related to mean and standard deviation calculations
+* MeltDataset: the result data.frame of a melting process on the subjects and activities variables
+* AverageDataset: data.frame that contains the average of each variable for each activity and each subject
+
 ### TRANSFORMATIONS
 Read raw data from files
 Joins and merges for create one dataset
