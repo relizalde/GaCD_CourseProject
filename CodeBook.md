@@ -53,6 +53,7 @@ The following variables save the data from the corresponding file:
  - fBodyGyroMag
  - fBodyGyroJerkMag
 * activity_labels
+
 id | Name
 1 | WALKING
 2 | WALKING_UPSTAIRS
@@ -60,6 +61,7 @@ id | Name
 4 | SITTING
 5 | STANDING
 6 | LAYING
+
 * subject_test
 * X_test
 * y_test
